@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Zora | Est. 2007</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@400;500;600;700&family=Pacifico&family=Satisfy&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@400..700&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     
     <style>
 :root {
@@ -71,20 +74,17 @@ body, html {
 .lock-content {
     text-align: center;
     z-index: 2;
-    animation: fadeInUp 1.4s ease-out;
+    animation: fadeInUp 1s ease-out;
     padding: 20px;
     max-width: 90%;
     display: flex;
     flex-direction: column;
-    align-items: center;          /* Better centering */
+    align-items: center;
 }
 @keyframes fadeInUp {
     from { opacity:0; transform:translateY(40px); }
     to   { opacity:1; transform:translateY(0); }
 }
-
-.birthday-decorations { font-size: 3.2rem; margin-bottom: 16px; animation: bounce 2.4s infinite; }
-@keyframes bounce { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-12px); } }
 
 .title-name {
     font-family: 'Dancing Script', cursive;
@@ -92,7 +92,7 @@ body, html {
     color: white;
     margin: 0;
     letter-spacing: 2px;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.3), 0 0 40px rgba(255,182,255,0.6);
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(255,182,255,0.6);
     animation: softGlow 4s ease-in-out infinite alternate;
 }
 @keyframes softGlow {
@@ -119,6 +119,7 @@ body, html {
 }
 .pin-label {
     font-size: 1.3rem;
+    font-family: 'Lobster Two', cursive;
     font-weight: 700;
     letter-spacing: 5px;
     text-transform: uppercase;
@@ -130,21 +131,22 @@ input[type="password"] {
     padding: 18px 0;
     letter-spacing: 18px;
     background: transparent;
-    border: none;
-    border-bottom: 4px solid rgba(255,255,255,0.8);
+    border: 2px solid rgba(184, 163, 149, 0.8);
+    border-radius: 12px;
     color: white;
     text-align: center;
     outline: none;
     transition: all 0.3s;
 }
-input:focus { border-bottom-color: white; transform: scale(1.04); }
+input:focus { border-color: white; transform: scale(1.04); }
 
 .btn-open {
     margin-top: 40px;
     padding: 18px 80px;
     background: white;
-    color: #6d28d9;
+    color: #ff2f00;
     border: none;
+    font-family: 'Lobster Two', cursive;
     border-radius: 999px;
     font-size: 1.2rem;
     font-weight: 700;
@@ -244,25 +246,28 @@ h2.visible { opacity:1; transform:translateY(0); }
 
 #time { font-size:0.85rem; color:#666; min-width:90px; text-align:right; }
 
-/* Gallery */
+/* Gallery - Optimized for vertical/square images */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 40px;
     margin-bottom: 80px;
     opacity: 0;
     transform: translateY(40px);
     transition: all 1s cubic-bezier(0.22,1,0.36,1);
+    justify-items: center;
 }
 .gallery-grid.visible { opacity:1; transform:translateY(0); }
 
 .polaroid {
     background: white;
-    padding: 16px 16px 48px;
+    padding: 16px 16px 60px;
     border-radius: 12px;
     box-shadow: 0 10px 28px rgba(0,0,0,0.14);
     transform: rotate(-2deg);
     transition: all 0.55s cubic-bezier(0.34,1.56,0.64,1);
+    width: 100%;
+    max-width: 340px;
 }
 .polaroid:nth-child(even) { transform: rotate(2deg); }
 .polaroid:nth-child(3n) { transform: rotate(-3deg); }
@@ -273,7 +278,8 @@ h2.visible { opacity:1; transform:translateY(0); }
 }
 .polaroid img {
     width: 100%;
-    height: 240px;
+    height: 440px;
+    aspect-ratio: 3 / 4;
     object-fit: cover;
     border-radius: 6px;
     filter: sepia(0.12) contrast(1.08);
@@ -289,6 +295,23 @@ h2.visible { opacity:1; transform:translateY(0); }
     transition: all 0.4s;
 }
 .polaroid:hover .caption { transform: translateY(-6px); }
+
+/* Force single column + portrait on mobile */
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: minmax(260px, 340px);
+        gap: 60px 20px;
+        padding: 0 12px;
+    }
+    .polaroid {
+        max-width: 340px;
+        margin: 0 auto;
+        padding: 14px 14px 64px;
+    }
+    .polaroid img {
+        height: 460px;
+    }
+}
 
 /* Wishes & Letters */
 .wishes-section, .letters-section {
@@ -325,6 +348,7 @@ h2.visible { opacity:1; transform:translateY(0); }
 .envelope {
     width: 160px;
     height: 110px;
+    font-family: 'Edu NSW ACT Cursive', cursive;
     background: linear-gradient(135deg, var(--paper), #f5efdf);
     border-radius: 12px;
     position: relative;
@@ -366,7 +390,7 @@ h2.visible { opacity:1; transform:translateY(0); }
     color: var(--red-wine);
 }
 
-/* Modal - smaller font */
+/* Modal */
 #letter-modal {
     position: fixed;
     inset: 0;
@@ -422,21 +446,13 @@ h2.visible { opacity:1; transform:translateY(0); }
     input[type="password"] { font-size:2.4rem; width:200px; letter-spacing:14px; }
     .title-name { font-size: clamp(6rem, 22vw, 12rem); }
     .subtitle { font-size:2rem; margin-bottom:60px; }
-    .gallery-grid { gap:28px; }
-    .polaroid { padding:14px 14px 40px; }
-    .polaroid img { height:200px; }
-    .envelope { width:140px; height:96px; }
-    .envelope::before { border-left-width:70px; border-right-width:70px; border-top-width:48px; }
-    .paper-note { padding:48px 32px; font-size:1.75rem; }   /* smaller on mobile */
-    h2 { margin-bottom:40px; }
-}
-
-@media (max-width: 480px) {
     .player-row { flex-direction:column; gap:16px; }
     #time { text-align:center; min-width:auto; }
     .player-art img { width:80px; height:80px; }
     .pin-box { padding: 40px 30px; }
     .btn-open { padding: 16px 60px; font-size:1.1rem; }
+    .paper-note { padding:48px 32px; font-size:1.75rem; }
+    h2 { margin-bottom:40px; }
 }
     </style>
 </head>
@@ -493,14 +509,14 @@ h2.visible { opacity:1; transform:translateY(0); }
     <!-- Gallery -->
     <h2 data-key="memories-title">Her Glow</h2>
     <div class="gallery-grid">
-        <div class="polaroid"><img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=600" loading="lazy" alt=""><div class="caption">Day 1</div></div>
-        <div class="polaroid"><img src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?w=600" loading="lazy" alt=""><div class="caption">So crazy</div></div>
-        <div class="polaroid"><img src="https://images.unsplash.com/photo-1517021897933-0e0319cfbc28?w=600" loading="lazy" alt=""><div class="caption">Love u</div></div>
-        <div class="polaroid"><img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600" loading="lazy" alt=""><div class="caption">Vibes</div></div>
+        <div class="polaroid"><img src="3.JPG" loading="lazy" alt=""><div class="caption">Day 1</div></div>
+        <div class="polaroid"><img src="2.JPG" loading="lazy" alt=""><div class="caption">So crazy</div></div>
+        <div class="polaroid"><img src="1.JPG" loading="lazy" alt=""><div class="caption">Love u</div></div>
+        
     </div>
 
     <!-- Message -->
-    <h2 data-key="message-title">A Message For You</h2>
+    <h2 data-key="message-title">Message For You</h2>
     <div class="wishes-section">
         <p class="wish-text" data-key="message-text">
             "I wish you a year filled with joy, good memories, and success. You're an amazing person, and I'm glad to know you. Happy 19th birthday 🩷"
@@ -529,7 +545,6 @@ h2.visible { opacity:1; transform:translateY(0); }
 </div>
 
 <script>
-// ────────────────────────────────────────────────
 const currentLang = { value: 'en' };
 
 const translations = {
@@ -551,7 +566,7 @@ const translations = {
         "letter-stressed": "You're Stressed"
     },
     fr: {
-        subtitle: "Créée en 2007",
+        subtitle: "2007 - 2026",
         "pin-label": "ENTREZ LE CODE",
         "unlock-btn": "OUVRIR",
         error: "Essaie encore bestie ♡",
